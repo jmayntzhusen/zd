@@ -1,7 +1,7 @@
 {
-  "name": "pipedrive",
+  "name": "Seed Project",
   "version": "1.0.0",
-  "description": "",
+  "description": "Execution boost app. Does nothing on its own.",
   "author": "HelpHouse",
   "license": "ISC",
   "scripts": {
