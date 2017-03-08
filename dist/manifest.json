@@ -1,0 +1,20 @@
+{
+  "name": "Seed Project",
+  "author": {
+    "name": "HelpHouse",
+    "email": "support@helphouse.io",
+    "url": "https://helphouse.io/"
+  },
+  "defaultLocale": "en",
+  "private": true,
+  "singleInstall": true,
+  "location": {
+    "support": {
+      "ticket_sidebar": "assets/index.html"
+    }
+  },
+  "parameters": [
+  ],
+  "version": "1.0",
+  "frameworkVersion": "2.0"
+}

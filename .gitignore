@@ -1,0 +1,12 @@
+
+*.iml
+.idea
+.zat
+node_modules
+.sass-cache
+/dist/tmp
+/dist/assets/*.map
+/dist/assets/index.*
+/dist/assets/ticket_sidebar.*
+/dist/translations
+/settings.json
