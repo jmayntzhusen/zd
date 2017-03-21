@@ -1,8 +1,11 @@
 const path = require('path');
+const webpack = require('webpack');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-const extractSASS = new ExtractTextPlugin('[name].css');
+const PRODUCTION = (process.env.NODE_ENV == 'production');
+
+const extractSCSS = new ExtractTextPlugin('[name].css');
 
 var externalAssets = {
   css: [
@@ -13,6 +16,25 @@ var externalAssets = {
     'https://assets.zendesk.com/apps/sdk/2.0/zaf_sdk.js'
   ]
 };
+
+const plugins = [
+  extractSCSS,
+  new HtmlWebpackPlugin({
+    warning: 'AUTOMATICALLY GENERATED FROM ./lib/templates/layout.hdbs - DO NOT MODIFY THIS FILE DIRECTLY',
+    vendorCss: externalAssets.css,
+    vendorJs: externalAssets.js,
+    template: './lib/templates/layout.hdbs',
+    filename: 'index.html'
+  })
+];
+
+if(PRODUCTION) {
+  // plugins.push(new webpack.optimize.UglifyJsPlugin({
+  //   compress: {
+  //     warnings: true
+  //   }
+  // }));
+}
 
 module.exports = {
   entry: {
@@ -49,7 +71,7 @@ module.exports = {
       },
       {
         test: /\.scss$/,
-        use: extractSASS.extract({
+        use: extractSCSS.extract({
           fallback: 'style-loader',
           use: [
             { loader: 'css-loader' },
@@ -77,6 +99,15 @@ module.exports = {
             extensions: ['hdbs'],
             runtime: "handlebars",
             inlineRequires: '\/images\/'
+          }
+        }
+      },
+      {
+        test: /fonts\/.+\.(svg|woff|woff2|ttf|eot)$/,
+        use: {
+          loader: 'file-loader',
+          options: {
+            name: 'fonts/[name].font.[ext]'
           }
         }
       }
@@ -107,14 +138,5 @@ module.exports = {
     zendesk_app_framework_sdk: 'ZAFClient'
   },
   devtool: "source-map",
-  plugins: [
-    extractSASS,
-    new HtmlWebpackPlugin({
-      warning: 'AUTOMATICALLY GENERATED FROM ./lib/templates/layout.hdbs - DO NOT MODIFY THIS FILE DIRECTLY',
-      vendorCss: externalAssets.css,
-      vendorJs: externalAssets.js,
-      template: './lib/templates/layout.hdbs',
-      filename: 'index.html'
-    })
-  ]
+  plugins: plugins
 };
