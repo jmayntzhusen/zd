@@ -3,8 +3,15 @@ class Storage {
     this.namespace = namespace;
   }
 
-  get(key) {
-    return JSON.parse(localStorage.getItem(`${this.namespace}:${key}`));
+  get(key, fallback) {
+    let storage_key = `${this.namespace}:${key}`;
+
+    if(localStorage.hasOwnProperty(storage_key)) {
+      return JSON.parse(localStorage.getItem(storage_key));
+    }
+    else {
+      return fallback;
+    }
   }
 
   set(keyOrObject, value) {

@@ -1,4 +1,5 @@
 import View from 'view';
+import Storage from 'storage';
 
 class AppBase {
   constructor(client, app_data, user) {
@@ -9,6 +10,8 @@ class AppBase {
     this._app_data = app_data;
     this._metadata = app_data.metadata;
     this._context = app_data.context;
+
+    this.storage = new Storage(this._metadata.installationId);
 
     this.view = new View({
       post_render: () => self.post_render.bind(self)(),
