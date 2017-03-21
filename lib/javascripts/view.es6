@@ -15,9 +15,15 @@ class View {
   switchTo(name, data) {
     _.isFunction(this.pre_render) && this.pre_render(name, data);
 
-    $('[data-main]').html(this.render_template(name, data));
+    let main = $('[data-main]').html(this.render_template(name, data));
 
     _.isFunction(this.post_render) && this.post_render(name, data);
+
+    main.trigger({
+      type: 'view.updated',
+      name: name,
+      data: data,
+    });
   }
 }
 
