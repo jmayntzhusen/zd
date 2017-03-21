@@ -48,7 +48,7 @@ Handlebars.registerHelper('t', function(key, context) {
     return I18n.t(key, context.hash);
   } catch(e) {
     console.error(e);
-    return e.message;
+    return key;
   }
 });
 
