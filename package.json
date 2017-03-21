@@ -5,8 +5,9 @@
   "author": "HelpHouse",
   "license": "ISC",
   "scripts": {
-    "build": "./node_modules/.bin/webpack --config webpack.config.js --progress --watch",
-    "server": "zat server --path=./dist -c settings.json"
+    "build": "./node_modules/.bin/webpack --config webpack.config.js",
+    "server": "zat server --path=./dist -c settings.json",
+    "package": "NODE_ENV='production' npm run build && zat package --path=./dist"
   },
   "devDependencies": {
     "babel-cli": "^6.23.0",
