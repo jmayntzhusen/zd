@@ -9,6 +9,9 @@
   </head>
   <body>
     <section data-main></section>
+    <div id="provider">
+      <small>Provided by <a href="https://helphouse.io/" target="_blank">HelpHouse.io</a></small>
+    </div>
     {{#each htmlWebpackPlugin.options.vendorJs}}
       <script type="text/javascript" src="{{this}}"></script>
     {{/each}}

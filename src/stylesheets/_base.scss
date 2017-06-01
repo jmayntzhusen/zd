@@ -1,0 +1,50 @@
+
+html {
+  overflow-y: auto;
+}
+
+body {
+  padding-bottom:30px;
+}
+
+.l-grid {
+  display:-webkit-flex;
+  display:flex;
+}
+
+[data-main] {
+  &::after, &::before {
+    display: table;
+    content: '';
+    clear: both;
+  }
+}
+
+#loading {
+  #spinner {
+    position: absolute;
+    left:50%;
+    top:50%;
+    @include transform(translate(-50%, -50%));
+  }
+}
+
+#provider {
+  margin:5px 0;
+  line-height:20px;
+  height:20px;
+
+  position: fixed;
+  bottom:0;
+  left:0;
+  right:0;
+  text-align: center;
+
+  &, a {
+    color: #AAAAAA;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+}

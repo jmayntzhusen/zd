@@ -2,29 +2,31 @@
   "name": "Seed Project",
   "version": "1.0.0",
   "description": "Execution boost app. Does nothing on its own.",
-  "author": "HelpHouse",
+  "author": "HelpHouse.io",
   "license": "ISC",
   "scripts": {
     "build": "./node_modules/.bin/webpack --config webpack.config.js",
     "server": "zat server --path=./dist -c settings.json",
-    "package": "NODE_ENV='production' npm run build && zat package --path=./dist"
+    "package": "npm run build -- -p && zat package --path=./dist"
   },
   "devDependencies": {
-    "babel-cli": "^6.23.0",
-    "babel-core": "^6.23.1",
-    "babel-loader": "^6.3.2",
-    "babel-preset-es2015": "^6.22.0",
+    "babel-cli": "^6.24.1",
+    "babel-core": "^6.24.1",
+    "babel-loader": "^6.4.1",
+    "babel-preset-latest": "^6.24.1",
+    "compass-mixins": "^0.12.10",
     "css-loader": "^0.26.1",
-    "extract-text-webpack-plugin": "^2.0.0-rc.3",
+    "extract-text-webpack-plugin": "^2.1.0",
     "file-loader": "^0.10.1",
     "handlebars": "^4.0.6",
-    "handlebars-loader": "^1.4.0",
+    "handlebars-loader": "^1.5.0",
     "html-webpack-plugin": "^2.28.0",
     "lodash": "^4.17.4",
     "node-sass": "^4.5.0",
-    "sass-loader": "^6.0.1",
+    "sass-loader": "^6.0.5",
     "style-loader": "^0.13.1",
+    "uglify-js": "git://github.com/mishoo/UglifyJS2.git#harmony-v2.8.22",
     "url-loader": "^0.5.8",
-    "webpack": "^2.2.1"
+    "webpack": "^2.5.1"
   }
 }
