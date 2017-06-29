@@ -47,10 +47,9 @@ Handlebars.registerHelper('t', function(key, context) {
   try {
     return I18n.t(key, context.hash);
   } catch(e) {
-    console.error(e);
+    console.warn(e);
     return key;
   }
 });
 
-//module.exports = I18n;
 export default I18n;

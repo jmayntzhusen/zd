@@ -21,6 +21,9 @@ body {
 }
 
 #loading {
+  min-height:100px;
+  position: relative;
+
   #spinner {
     position: absolute;
     left:50%;
