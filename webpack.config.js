@@ -12,7 +12,9 @@ var externalAssets = {
     'https://assets.zendesk.com/apps/sdk-assets/css/1/zendesk_garden.css'
   ],
   js: [
-    'https://cdn.jsdelivr.net/g/lodash@4.17.4,handlebarsjs@4.0.5,jquery@3.1.1',
+    'https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.4/lodash.min.js',
+    'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js',
+    'https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.10/handlebars.min.js',
     'https://assets.zendesk.com/apps/sdk/2.0/zaf_sdk.js'
   ]
 };
