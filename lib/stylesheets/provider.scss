@@ -1,0 +1,20 @@
+
+#provider {
+  margin:5px 0;
+  line-height:20px;
+  height:20px;
+
+  position: fixed;
+  bottom:0;
+  left:0;
+  right:0;
+  text-align: center;
+
+  &, a {
+    color: #AAAAAA;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+}

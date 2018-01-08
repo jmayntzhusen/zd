@@ -1,0 +1,18 @@
+
+### IntelliJ IDEA
+*.iml
+*.log
+/.idea
+
+### NodeJS
+/node_modules
+package-lock.json
+
+### SASS
+.sass-cache
+
+### Zendesk App Tools
+/settings.json
+
+### Project
+/dist/

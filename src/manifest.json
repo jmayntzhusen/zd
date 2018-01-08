@@ -1,0 +1,20 @@
+{
+  "name": "Seep Project",
+  "author": {
+    "name": "HelpHouse.io",
+    "email": "support@helphouse.io",
+    "url": "https://helphouse.io/"
+  },
+  "location": {
+    "support": {
+      "ticket_sidebar": "assets/index.html"
+    }
+  },
+  "defaultLocale": "en",
+  "private": false,
+  "version": "{{version}}",
+  "singleInstall": true,
+  "frameworkVersion": "2.0",
+  "termsConditionsURL": "https://helphouse.io/terms/",
+  "gaID": ""
+}
