@@ -2,7 +2,7 @@
 import React from 'react';
 import {render} from 'react-dom';
 
-class App {
+export default class App {
   constructor(client, app_data, user) {
     this.client = client;
     this.user = user;
@@ -48,14 +48,12 @@ class App {
   }
 
   main() {
-    render(this.render(), document.getElementsByTagName('main')[0]);
+    window.addEventListener('resize', () => { this.resize_viewport(); });
 
-    this.resize_viewport()
+    render(this.render(), document.getElementsByTagName('main')[0]);
   }
 
   render() {
-    throw new Error(`Please defined render() method on ${this.constructor.name} class`);
+    throw new Error(`Please define render() method on ${this.constructor.name} class`);
   }
 }
-
-export default App;

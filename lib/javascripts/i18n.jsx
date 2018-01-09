@@ -37,22 +37,29 @@ const I18n = Object.freeze({
 });
 
 
-class T extends React.Component {
-  constructor(...args) {
-    super(...args);
-
-    this.default = this.props.children;
-    this.var = this.props.var || this.default;
-  }
-
-  render() {
-    try {
-      return I18n.t(this.var);
-    } catch(e) {
-      console.warn(e);
-      return this.var;
-    }
+function gettext(key) {
+  try {
+    return I18n.t(key);
+  } catch(e) {
+    console.warn(e);
+    return key;
   }
 }
 
-export { I18n as default, T };
+class T extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this._key = this.props.var || this.props.children;
+  }
+
+  render() {
+    return gettext(this._key)
+  }
+}
+
+export {
+  I18n as default,
+  T,
+  gettext,
+};

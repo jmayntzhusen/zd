@@ -57,7 +57,6 @@ var config = {
   entry: {
     index: [
       './src/javascripts/index.jsx',
-      './lib/stylesheets/base.scss',
       './src/stylesheets/index.scss'
     ]
   },

@@ -1,7 +1,8 @@
 import App from 'app';
 import React from 'react';
-import {T} from 'i18n';
+import {T, gettext as _} from 'i18n';
 import Provider from 'provider';
+import Loading from "../../lib/javascripts/loading";
 
 /**
  * ClassNames Helper
@@ -14,7 +15,7 @@ export default class SeedApp extends App {
   render() {
     // Return react components
     return [
-      <p>It works!</p>,
+      <Loading/>,
       <Provider/>,
     ]
   }
