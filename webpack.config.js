@@ -147,14 +147,14 @@ var config = {
       //{ from: 'src/images/screenshot-1.png', to: 'screenshot-1.png' },
       //{ from: 'src/images/screenshot-2.png', to: 'screenshot-2.png' },
       //{ from: 'src/images/screenshot-3.png', to: 'screenshot-3.png' },
-      { from: 'src/translations/en.json', to: '../translations/en.json' }
     ]),
+    new GenerateJsonPlugin('../translations/en.json', {'app': require('./src/translations/en.json').app}),
     new GenerateJsonPlugin('../manifest.json', JSON.parse(manifest)),
     new webpack.DefinePlugin({
       ENVIRONMENT: JSON.stringify(ENVIRONMENT),
       VERSION: JSON.stringify(_version),
       RAVEN_DSN: JSON.stringify(RAVEN_DSN),
-      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
+      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
     })
   ]
 };
