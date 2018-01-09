@@ -121,8 +121,7 @@ var config = {
   },
   resolveLoader: {
     modules: [
-      path.resolve(__dirname, 'lib/loaders'),
-      path.resolve(__dirname, 'node_modules')
+      path.resolve(__dirname, 'node_modules'),
     ],
     extensions: ['.js', '.jsx']
   },
