@@ -2,6 +2,10 @@ import I18n from 'i18n';
 import ZAFClient from 'zendesk_app_framework_sdk';
 import Raven from 'Raven';
 
+require('../images/logo.png');
+require('../images/logo-small.png');
+require('../images/logo.svg');
+
 if(typeof RAVEN_DSN === 'string') {
   Raven.config(RAVEN_DSN).install();
 }

@@ -3,7 +3,6 @@ const webpack = require('webpack');
 const GenerateJsonPlugin = require('generate-json-webpack-plugin');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
 var manifest = JSON.stringify(require(path.resolve(__dirname, './src/manifest.json')));
@@ -67,12 +66,11 @@ var config = {
   module: {
     rules: [
       {
-        test: /\.(png|gif|jpe?g)$/,
+        test: /\.(png|gif|jpe?g|svg)$/,
         use: {
-          loader: 'url-loader',
+          loader: 'file-loader',
           options: {
             name: '[name].[ext]',
-            limit: 10000
           }
         }
       },
@@ -139,14 +137,6 @@ var config = {
       template: './lib/templates/layout.ejs',
       filename: 'index.html'
     }),
-    new CopyWebpackPlugin([
-      { from: 'src/images/logo.png', to: 'logo.png' },
-      { from: 'src/images/logo-small.png', to: 'logo-small.png' },
-      { from: 'src/images/logo.svg', to: 'logo.svg' },
-      //{ from: 'src/images/screenshot-1.png', to: 'screenshot-1.png' },
-      //{ from: 'src/images/screenshot-2.png', to: 'screenshot-2.png' },
-      //{ from: 'src/images/screenshot-3.png', to: 'screenshot-3.png' },
-    ]),
     new GenerateJsonPlugin('../translations/en.json', {'app': require('./src/translations/en.json').app}),
     new GenerateJsonPlugin('../manifest.json', JSON.parse(manifest)),
     new webpack.DefinePlugin({
@@ -170,7 +160,7 @@ if(PRODUCTION) {
     new UglifyJSPlugin({
       uglifyOptions: {
         beautify: false,
-        ecma: 6,
+        ecma: 8,
         compress: true,
         comments: false
       }
