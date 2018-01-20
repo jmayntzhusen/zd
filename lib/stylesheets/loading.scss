@@ -1,13 +1,40 @@
 
-#loading {
-  min-height:100px;
+@keyframes loader-pulse {
+  0% {opacity: .2;}
+  50% {opacity: .8;}
+  100% {opacity: .2;}
+}
+
+.loading {
+  min-height:150px;
+  width:100%;
   position: relative;
 
-  #spinner {
+  svg.dots-loader {
     position: absolute;
-    left:50%;
-    top:50%;
-    -webkit-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+
+    circle {
+      fill: #555555;
+      -webkit-animation: loader-pulse 1s infinite;
+      animation: loader-pulse 1s infinite;
+
+      &:nth-child(1) {
+        -webkit-animation-delay: .4s;
+        animation-delay: .4s;
+      }
+
+      &:nth-child(2) {
+        -webkit-animation-delay: .2s;
+        animation-delay: .2s;
+      }
+
+      &:nth-child(3) {
+        -webkit-animation-delay: 0s;
+        animation-delay: 0s;
+      }
+    }
   }
 }
