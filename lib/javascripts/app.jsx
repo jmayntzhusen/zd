@@ -1,4 +1,4 @@
-//import Storage from 'storage';
+//import StorageLocal from 'storage/local';
 import React from 'react';
 import {render} from 'react-dom';
 
@@ -10,7 +10,7 @@ export default class App {
     this.metadata = app_data.metadata;
     this.context = app_data.context;
 
-    //this.storage = new Storage(this.metadata.installationId);
+    //this.storage = new StorageLocal(this.metadata.installationId);
 
     this.main();
   }
