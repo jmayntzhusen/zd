@@ -1,0 +1,1 @@
+Simply click install and be awesome!

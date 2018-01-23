@@ -7,8 +7,9 @@ let translations;
 
 function tryRequire(locale) {
   try {
-    return require(`../../src/translations/${locale}.json`);
-  } catch(e) {
+    return require(`../../../src/translations/${locale}.json`);
+  }
+  catch(e) {
     return null;
   }
 }
@@ -37,7 +38,7 @@ const I18n = Object.freeze({
 });
 
 
-function gettext(key) {
+export function gettext(key) {
   try {
     return I18n.t(key);
   } catch(e) {
@@ -46,20 +47,4 @@ function gettext(key) {
   }
 }
 
-class T extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this._key = this.props.var || this.props.children;
-  }
-
-  render() {
-    return gettext(this._key)
-  }
-}
-
-export {
-  I18n as default,
-  T,
-  gettext,
-};
+export default I18n;

@@ -1,12 +1,18 @@
 const path = require('path');
+const fs = require('fs');
 const webpack = require('webpack');
 const GenerateJsonPlugin = require('generate-json-webpack-plugin');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
-var manifest = JSON.stringify(require(path.resolve(__dirname, './src/manifest.json')));
-var pkg = require(path.resolve(__dirname, './package.json'));
+/********* Utils *****************************/
+
+require.extensions['.md'] = function (module, filename) {
+  module.exports = fs.readFileSync(filename, 'utf8');
+};
+
+/********* End of utils **********************/
 
 const PRODUCTION = (process.env.NODE_ENV === 'production');
 
@@ -17,7 +23,10 @@ const RAVEN_DSN = undefined;  // Set this in production
 const extractSCSS = new ExtractTextPlugin('[name].css');
 
 /********* Prepare Zendesk app files *********/
-var _version = typeof pkg.version !== 'undefined' ?
+let manifest = JSON.stringify(require(path.resolve(__dirname, './src/manifest.json')));
+let pkg = require(path.resolve(__dirname, './package.json'));
+
+let _version = typeof pkg.version !== 'undefined' ?
   pkg.version.replace(/^(\d+)((?:\.\d+)+?)(?:\.0)*$/, '$1$2') :
   '1.0';
 
@@ -27,9 +36,19 @@ if(!PRODUCTION) {
 
 manifest = manifest
   .replace('{{version}}', _version);
+
+let _short_description = require('./src/marketplace/en/short_description.md');
+let _long_description = require('./src/marketplace/en/long_description.md');
+let _installation_instructions = require('./src/marketplace/en/installation_instructions.md');
+
+let _lang_en = JSON.stringify(require('./src/translations/en.json'))
+  .replace('{{name}}', JSON.parse(manifest).name)
+  .replace('{{long_description}}', _long_description.replace(/\n/gm, '\\n'))
+  .replace('{{short_description}}', _short_description.replace(/\n/gm, '\\n'))
+  .replace('{{installation_instructions}}', _installation_instructions.replace(/\n/gm, '\\n'));
 /********* End of preparation ****************/
 
-var externalAssets = {
+let externalAssets = {
   css: [
     /**
      * Zendesk Garden CSS components
@@ -52,7 +71,7 @@ var externalAssets = {
   ]
 };
 
-var config = {
+let config = {
   entry: {
     index: [
       './src/javascripts/index.jsx',
@@ -137,7 +156,7 @@ var config = {
       template: './lib/templates/layout.ejs',
       filename: 'index.html'
     }),
-    new GenerateJsonPlugin('../translations/en.json', {'app': require('./src/translations/en.json').app}),
+    new GenerateJsonPlugin('../translations/en.json', {'app': JSON.parse(_lang_en).app}),
     new GenerateJsonPlugin('../manifest.json', JSON.parse(manifest)),
     new webpack.DefinePlugin({
       ENVIRONMENT: JSON.stringify(ENVIRONMENT),

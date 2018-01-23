@@ -1,7 +1,7 @@
 import React from 'react';
-import '../stylesheets/provider.scss';
+import '../../stylesheets/provider.scss';
 
-export default class Provider extends React.Component {
+export default class ProvidedBy extends React.Component {
   render() {
     return (
       <div id="provider">

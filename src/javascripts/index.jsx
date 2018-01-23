@@ -1,4 +1,4 @@
-import I18n from 'i18n';
+import I18n from 'utils/i18n';
 import ZAFClient from 'zendesk_app_framework_sdk';
 import Raven from 'Raven';
 

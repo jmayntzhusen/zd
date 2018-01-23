@@ -1,8 +1,8 @@
 {
   "app": {
-    "name": "Seed Project",
-    "short_description": "Play the famous zen tunes in your help desk.",
-    "long_description": "Play the famous zen tunes in your help desk and \n listen to the beats it has to offer.",
-    "installation_instructions": "Simply click install."
+    "name": "{{name}}",
+    "short_description": "{{short_description}}",
+    "long_description": "{{long_description}}",
+    "installation_instructions": "{{installation_instructions}}"
   }
 }
