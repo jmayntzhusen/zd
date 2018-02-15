@@ -79,6 +79,8 @@ export default class App {
       </Provider>,
       document.getElementsByTagName('main')[0],
     );
+
+    this.resize_viewport();
   }
 
   render() {
