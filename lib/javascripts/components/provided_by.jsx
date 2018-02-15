@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../stylesheets/provider.scss';
+import '../../stylesheets/provided_by.scss';
 
 export default class ProvidedBy extends React.Component {
   render() {

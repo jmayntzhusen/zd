@@ -1,18 +1,41 @@
 //import StorageLocal from 'storage/local';
 import React from 'react';
-import {render} from 'react-dom';
+import { render } from 'react-dom';
+import { createStore, combineReducers } from 'redux';
+import { Provider } from 'react-redux';
+import { setApp } from "./actions/app";
+import { appReducer } from "./reducers/app";
+
 
 export default class App {
   constructor(client, app_data, user) {
     this.client = client;
     this.user = user;
-    this._app_data = app_data;
+    this.app_data = app_data;
     this.metadata = app_data.metadata;
     this.context = app_data.context;
+    this.store = this.get_store();
+
+    this.store.dispatch(setApp(this));
 
     //this.storage = new StorageLocal(this.metadata.installationId);
 
     this.main();
+  }
+
+  get_store(...args) {
+    return createStore(
+      this.get_root_reducer(),
+      ...args,
+    );
+  }
+
+  get_root_reducer() {
+    return combineReducers(this.get_reducers());
+  }
+
+  get_reducers() {
+    return { app: appReducer };
   }
 
   resize_viewport(width, height) {
@@ -21,12 +44,7 @@ export default class App {
     }
 
     if(!height) {
-      let body = document.body,
-          html = document.documentElement;
-
-      // height = Math.max( body.scrollHeight, body.offsetHeight,
-      //   html.clientHeight, html.scrollHeight, html.offsetHeight);
-      height = Math.max(body.offsetHeight, html.offsetHeight);
+      height = document.getElementsByTagName('main')[0].offsetHeight;
     }
 
     if(width || height) {
@@ -48,9 +66,19 @@ export default class App {
   }
 
   main() {
-    window.addEventListener('resize', () => { this.resize_viewport(); });
+    this.store.subscribe(() => {
+      setTimeout(() => {
+        // Push resize behind the render queue
+        this.resize_viewport();
+      }, 1);
+    });
 
-    render(this.render(), document.getElementsByTagName('main')[0]);
+    render(
+      <Provider store={this.store}>
+        {this.render()}
+      </Provider>,
+      document.getElementsByTagName('main')[0],
+    );
   }
 
   render() {

@@ -35,7 +35,8 @@ if(!PRODUCTION) {
 }
 
 manifest = manifest
-  .replace('{{version}}', _version);
+  .replace('{{version}}', _version)
+  .replace('{{author}}', pkg.author);
 
 let _short_description = require('./src/marketplace/en/short_description.md');
 let _long_description = require('./src/marketplace/en/long_description.md');
@@ -73,6 +74,7 @@ let externalAssets = {
 
 let config = {
   entry: {
+    //'babel-polyfill': ['babel-polyfill'],
     index: [
       './src/javascripts/index.jsx',
       './src/stylesheets/index.scss'

@@ -1,7 +1,7 @@
 {
   "name": "Seep Project",
   "author": {
-    "name": "HelpHouse.io",
+    "name": "{{author}}",
     "email": "support@helphouse.io",
     "url": "https://helphouse.io/"
   },

@@ -6,6 +6,10 @@ require('../images/logo.png');
 require('../images/logo-small.png');
 require('../images/logo.svg');
 
+// require('../images/screenshot-0.png');
+// require('../images/screenshot-1.png');
+// require('../images/screenshot-2.png');
+
 if(typeof RAVEN_DSN === 'string') {
   Raven.config(RAVEN_DSN).install();
 }
