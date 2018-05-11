@@ -14,9 +14,21 @@ require.extensions['.md'] = function (module, filename) {
 
 /********* End of utils **********************/
 
-const PRODUCTION = (process.env.NODE_ENV === 'production');
+const [ENVIRONMENT, SUBVERSION] = (env => {
+  if(env === 'production') {
+    return ['production', null];
+  }
 
-const ENVIRONMENT = PRODUCTION ? 'production' : 'development';
+  let _match = /^(alpha|beta)(\d+)?$/.exec(env);
+
+  if(_match) {
+    return [_match[1], _match[1][0] + _match[2]];
+  }
+
+  return ['development', 'dev']
+})(process.env.NODE_ENV);
+
+const PRODUCTION = (ENVIRONMENT !== 'development');
 
 const RAVEN_DSN = undefined;  // Set this in production
 
@@ -30,8 +42,8 @@ let _version = typeof pkg.version !== 'undefined' ?
   pkg.version.replace(/^(\d+)((?:\.\d+)+?)(?:\.0)*$/, '$1$2') :
   '1.0';
 
-if(!PRODUCTION) {
-  _version += '.dev'
+if(SUBVERSION) {
+  _version += SUBVERSION
 }
 
 manifest = manifest
@@ -163,7 +175,7 @@ let config = {
     new webpack.DefinePlugin({
       ENVIRONMENT: JSON.stringify(ENVIRONMENT),
       VERSION: JSON.stringify(_version),
-      RAVEN_DSN: JSON.stringify(RAVEN_DSN),
+      RAVEN_DSN: JSON.stringify(PRODUCTION ? RAVEN_DSN : undefined),
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
     })
   ]
