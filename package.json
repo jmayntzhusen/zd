@@ -5,7 +5,7 @@
   "author": "helphouse.io",
   "license": "ISC",
   "scripts": {
-    "build": "npm run clean && ./node_modules/.bin/webpack --config webpack.config.js",
+    "build": "npm run clean && npm i && ./node_modules/.bin/webpack --config webpack.config.js",
     "server": "zat server --path=./dist -c settings.json",
     "package": "NODE_ENV='production' npm run build && zat package --path=./dist",
     "update": "NODE_ENV='production' npm run build && zat update --path=./dist",
