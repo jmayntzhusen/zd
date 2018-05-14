@@ -86,7 +86,7 @@ let externalAssets = {
 
 let config = {
   entry: {
-    //'babel-polyfill': ['babel-polyfill'],
+    'babel-polyfill': ['babel-polyfill'],
     index: [
       './src/javascripts/index.jsx',
       './src/stylesheets/index.scss'

@@ -1,8 +1,8 @@
 {
-  "name": "Seed_Project",
+  "name": "Zendesk_Umbraco_App",
   "version": "1.0.0",
   "description": "",
-  "author": "helphouse.io",
+  "author": "Bachelor",
   "license": "ISC",
   "scripts": {
     "build": "npm run clean && npm i && ./node_modules/.bin/webpack --config webpack.config.js",
@@ -15,6 +15,7 @@
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
     "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
     "copy-webpack-plugin": "^4.3.1",

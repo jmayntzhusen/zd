@@ -1,0 +1,30 @@
+.search {
+  display: flex;
+  width: 100%;
+  max-width: 450px;
+  height: $io-xs-height;
+  margin: 0 auto;
+  border-radius: $br-normal;
+  border: 1px solid $c-grey;
+
+  &__input {
+    -webkit-appearance: none;
+    border: none;
+    border-radius-top-left: $br-normal;
+    border-radius-top-right: $br-normal;
+    flex-grow: 1;
+    padding: 0.5em;
+  }
+
+  &__button {
+    flex-grow: 0;
+    -webkit-appearance: none;
+    border: none;
+    border-radius: 0 $br-normal $br-normal 0;
+    background: $c-lime-green;
+    padding: 0 1.2em;
+    font-size: 16px;
+    color: #fff;
+    box-shadow: $bs-button;
+  }
+}
