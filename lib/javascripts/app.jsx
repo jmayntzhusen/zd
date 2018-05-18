@@ -6,7 +6,7 @@ import { Provider } from 'react-redux';
 import { setApp } from "./actions/app";
 import { appReducer } from "./reducers/app";
 import {instance_dispatcher_middleware} from "./middleware/instance_dispatcher";
-import Documentation from '../umbraco/documentation';
+import Umbraco from '../umbraco/documentation';
 
 
 export default class App {
@@ -21,7 +21,7 @@ export default class App {
     this.metadata = app_data.metadata;
     this.context = app_data.context;
     this.store = this.get_store();
-    this.umbraco = new Documentation(this.client);
+    this.umbraco = new Umbraco(this.client);
     this.store.dispatch(setApp(this));
 
     //this.storage = new StorageLocal(this.metadata.installationId);

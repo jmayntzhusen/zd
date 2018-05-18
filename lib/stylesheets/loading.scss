@@ -1,39 +1,53 @@
-
-@keyframes loader-pulse {
-  0% {opacity: .2;}
-  50% {opacity: .8;}
-  100% {opacity: .2;}
+@keyframes lds-rolling {
+  0% {
+    -webkit-transform: translate(-50%, -50%) rotate(0deg);
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    -webkit-transform: translate(-50%, -50%) rotate(360deg);
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+@-webkit-keyframes lds-rolling {
+  0% {
+    -webkit-transform: translate(-50%, -50%) rotate(0deg);
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    -webkit-transform: translate(-50%, -50%) rotate(360deg);
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
 }
 
 .loading {
-  min-height:150px;
-  width:100%;
-  position: relative;
+  &__rolling {
+    position: relative;
+    width: 30px !important;
+    height: 30px !important;
+    -webkit-transform: translate(-100px, -100px) scale(1) translate(100px, 100px);
+    transform: translate(-15px, -15px) scale(1) translate(15px, 15px);
 
-  svg.dots-loader {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translateX(-50%) translateY(-50%);
+    div {
+      position: absolute;
+      width: 24px;
+      height: 24px;
+      border: 3px solid #ffffff;
+      border-top-color: transparent;
+      border-radius: 50%;
+      -webkit-animation: lds-rolling 1s linear infinite;
+      animation: lds-rolling 1s linear infinite;
+      top: 15px;
+      left: 15px;
 
-    circle {
-      fill: #30aabc;
-      -webkit-animation: loader-pulse 1s infinite;
-      animation: loader-pulse 1s infinite;
-
-      &:nth-child(1) {
-        -webkit-animation-delay: .4s;
-        animation-delay: .4s;
-      }
-
-      &:nth-child(2) {
-        -webkit-animation-delay: .2s;
-        animation-delay: .2s;
-      }
-
-      &:nth-child(3) {
-        -webkit-animation-delay: 0s;
-        animation-delay: 0s;
+      &::after {
+        position: absolute;
+        width: 160px;
+        height: 160px;
+        border: 20px solid #ffffff;
+        border-top-color: transparent;
+        border-radius: 50%;
+        -webkit-transform: rotate(90deg);
+        transform: rotate(90deg);
       }
     }
   }

@@ -1,0 +1,27 @@
+.result-item {
+  display: block;
+  margin-bottom: 10px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+  
+  &__wrap {
+    a {
+      text-decoration: none;
+    }
+  }
+
+  &__label {
+    display: block;
+    &--category {
+      font-size: 11px;
+      color: $c-lime-green;
+    }
+
+    &--name {
+      font-size: 15px;
+      color: $c-black;
+    }
+  }
+}

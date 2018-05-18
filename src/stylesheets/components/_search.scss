@@ -19,6 +19,7 @@
   &__button {
     flex-grow: 0;
     -webkit-appearance: none;
+    flex-basis: 90px;
     border: none;
     border-radius: 0 $br-normal $br-normal 0;
     background: $c-lime-green;
@@ -26,5 +27,11 @@
     font-size: 16px;
     color: #fff;
     box-shadow: $bs-button;
+
+    &--is-loading {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
   }
 }

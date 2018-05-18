@@ -1,4 +1,4 @@
-export default class ApiBase {
+export default class Base {
   constructor(client) {
     this._client = client;
   }
@@ -15,15 +15,15 @@ export default class ApiBase {
     return await this.request(endpoint, 'GET');
   }
 
-  put(endpoint) {
-
+  async put(endpoint) {
+    return await this.request(endpoint, 'PUT');
   }
 
-  post(endpoint) {
-
+  async post(endpoint) {
+    return await this.request(endpoint, 'POST');
   }
 
-  delete(endpoint) {
-
+  async delete(endpoint) {
+    return await this.request(endpoint, 'DELETE');
   }
 }
