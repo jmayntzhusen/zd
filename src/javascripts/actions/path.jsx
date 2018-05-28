@@ -4,3 +4,10 @@ export function setPath(path) {
     path
   }
 }
+
+export function setArticlePath(path) {
+  return {
+    type: 'SET_ARTICLE_PATH',
+    path
+  }
+}

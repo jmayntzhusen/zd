@@ -21,21 +21,25 @@ class SidebarBase extends React.Component {
   }
 
   async getPath() {
-    const ticket = await this.props.app.client.get('ticket');
-    let path     = ticket.ticket.subject.split('(From: ');
+    const subject    = (await this.props.app.client.get('ticket')).ticket.subject;
+    const identifier = '(From: ';
 
-    path = path[1].split(')');
-    path = path[0].split('/');
+    if(subject.includes(identifier)) {
+      let path = subject.split(identifier);
 
-    let result = [];
+      path = path[1].split(')');
+      path = path[0].split('/');
 
-    path.forEach(item => {
-      if(item.length) {
-        result.push(item);
-      }
-    });
+      let result = [];
 
-    this.props.setPath(result);
+      path.forEach(item => {
+        if(item.length) {
+          result.push(item);
+        }
+      });
+
+      this.props.setPath(result);
+    }
   }
 }
 

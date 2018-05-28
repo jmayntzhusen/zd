@@ -4,10 +4,11 @@ import ResultItem from './result_item';
 
 class ResultList extends React.Component {
   render() {
+    console.log(this.props.result);
    return (
      <ul className="result-list">
       {this.props.result.map(item => {
-        return <ResultItem href={item.ourUrl} name={item.name} category={item.category}/>
+        return <ResultItem url={item.url} name={item.name} category={item.category}/>
       })}
     </ul>
    );

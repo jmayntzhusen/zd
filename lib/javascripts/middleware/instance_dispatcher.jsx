@@ -7,7 +7,7 @@ export function instance_dispatcher_middleware(app) {
         app.client.get('instances').then(response => {
           Object.keys(response.instances).forEach(guid => {
             const context = response.instances[guid];
-            const action_routes = this.get_action_routes(app.action_routes);
+            const action_routes = app.get_action_routes(app.action_routes);
             const dispatch_actions = action_routes[context.location];
 
             if (typeof dispatch_actions !== 'undefined'

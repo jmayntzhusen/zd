@@ -12,7 +12,13 @@ import {pathReducer} from './reducers/path';
 // import classNames from 'classnames';
 
 
-export default class SeedApp extends App {
+export default class TicketSidebar extends App {
+  action_routes = {
+    modal: [
+      'SET_ARTICLE_PATH'
+    ]
+  };
+
   get_reducers() {
     return Object.assign(super.get_reducers(), {
       result: resultReducer,

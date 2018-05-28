@@ -17,12 +17,15 @@ class Search extends React.Component {
 
 
   render() {
-    console.log(this.props, this.state);
+    const isEnabled = this.state.term.length > 3;
+    console.log('testing', this.state.term.length > 3);
+    console.log('Is it enabled?', !isEnabled);
+
     return (
       <form className={'search'} onSubmit={(e) => this.handleSubmit(e)}>
         <input id={'term'} value={this.state.term} onChange={(e) => this.handleChange(e)} className={'search__input'} type={'text'}/>
         {!this.state.isLoading
-          ? <button className={'search__button'} type={'submit'}>{_('Search')}</button>
+          ? <button disabled={!isEnabled} className={'search__button' + (!isEnabled ? ' search__button--disabled' : '')} type={'submit'}>{_('Search')}</button>
           : (
             <div className="search__button search__button--is-loading">
               <Loading/>
@@ -30,7 +33,7 @@ class Search extends React.Component {
           )
         }
         {this.state.error &&
-          <small>{this.state.message}</small>}
+          <small className="search__message">{this.state.message}</small>}
       </form>
     )
   }
@@ -44,29 +47,26 @@ class Search extends React.Component {
     const data = await this.props.app.umbraco.search(this.state.term);
     const resp = data.response;
 
-    if(resp === 400) {
+    if(resp === 400 || resp === 404) {
       this.setState({
         error: true,
         message: data.message
       });
-    }
-    else if(resp === 200) {
-      console.log(data);
+    } else if(resp === 200) {
       this.setState({
         error: false,
         message: null
       });
 
       this.props.setResult(data.data);
-      this.setState({isLoading: false});
     }
+
+    this.setState({isLoading: false});
   }
 
   handleChange(e) {
     if(e.target.id === 'term') {
-      this.setState({
-        term: e.target.value
-      });
+      this.setState({term: e.target.value});
     }
   }
 }

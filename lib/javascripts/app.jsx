@@ -84,15 +84,28 @@ export default class App {
     }
   }
 
-  create_instance(location='modal', url='assets/index.html') {
-    return this.client.invoke('instances.create', {
+  async create_instance(location='modal', url='assets/index.html') {
+    let response = await this.client.invoke('instances.create', {
       location: location,
       url: url,
-    }).then(response => {
-      let context = response['instances.create'][0];
-
-      return this.client.instance(context.instanceGuid);
     });
+
+    let context = response['instances.create'][0];
+
+    let client = this.client.instance(context.instanceGuid);
+
+    return new Promise((resolve, reject) => {
+      client.on('app.render.before', () => resolve(client));
+    });
+  }
+
+  get_location() {
+    this.client.context().then(context => {
+      if(context.location === 'modal') {
+        document.getElementsByTagName('html')[0].classList.add('html-class');
+        document.getElementsByTagName('body')[0].classList.add('body-class');
+      }
+    })
   }
 
   main() {
@@ -149,6 +162,7 @@ export default class App {
 
     this.client.trigger('app.render.after');
 
+    this.get_location();
     this.resize_viewport();
   }
 
