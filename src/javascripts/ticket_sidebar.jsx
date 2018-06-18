@@ -7,6 +7,7 @@ import Loading from "components/loading";
 import SidebarBase from './sidebar_base';
 import {resultReducer} from './reducers/result';
 import {pathReducer} from './reducers/path';
+import {categoryReducer, currentCategoryReducer} from './reducers/category';
 // import { Tabs, Tab} from "components/tabs";
 // import {tabsActiveReducer} from "reducers/tabs";
 // import classNames from 'classnames';
@@ -22,7 +23,9 @@ export default class TicketSidebar extends App {
   get_reducers() {
     return Object.assign(super.get_reducers(), {
       result: resultReducer,
-      path: pathReducer
+      path: pathReducer,
+      categories: categoryReducer,
+      currentCategory: currentCategoryReducer
     });
   }
 

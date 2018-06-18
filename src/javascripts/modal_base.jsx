@@ -16,7 +16,7 @@ class ModalBase extends React.Component {
   render() {
     console.log(this.state.markdown);
     return this.state.markdown
-      ? <Markdown source={this.state.markdown.data}/>
+      ? <Markdown source={this.state.markdown}/>
       : <Loading/>;
   }
 
