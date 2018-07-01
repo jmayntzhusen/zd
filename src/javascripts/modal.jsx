@@ -1,6 +1,5 @@
 import App from 'app';
 import React from 'react';
-import ProvidedBy from 'components/provided_by';
 import {articlePathReducer} from './reducers/path';
 import ModalBase from './modal_base';
 
@@ -19,7 +18,6 @@ export default class TicketSidebar extends App {
     return (
       <React.Fragment>
         <ModalBase />
-        <ProvidedBy/>
       </React.Fragment>
     )
   }
